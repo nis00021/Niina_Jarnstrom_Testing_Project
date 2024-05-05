@@ -4,32 +4,64 @@
 *** Settings ***
 Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
 
-# TODO: Write Precondition and Postcondition, Tags 
 
-Pre Condition	Tips: Project must be created by the user before 
-Post Condition	
-Tags
+
+Pre Condition	Open browser, Sign In to Gitlab, Select existing project
+Post Condition	Sign Out of Gitlab, Close browser
+Tags Issue, Issue management, TS-1-issue
 
 #******************* Common Variables ********************
 
 
 *** Variables ***
 
-# NOTE: Please Remove your login credential before uploading Assignments
-
-# TODO: Write Issue creation field variables, Updated name of the issue
-
+IssuesUrl = https://gitlab.com/test/project_name/issues
+AddIssueUrl = https://gitlab.com/test/project_name/issues/new
+Title = New Issue
+UpdatedTitle = New Issue Updated
+Type = Issue
+DueDate = 31.12.2024
+Empty = 
 
 
 #******************** Test Cases *************************
 
 *** Test Case ***
 
-# TODO: Write Positive Test Cases and Test Process steps
+Create issue
+	Navigate to Add Issue 	AddIssueUrl
+	Input Title				Title
+	Input Type				Type
+	Input Description of Issue
+	Input Due Date			DueDate
+	Click Create Issue
+	Issue Page should contain message "Issue created"
 
-# Positive Test examples are below write test process steps for each below test case
 
-	Create issue,
- 	Update name of issue, 
-	Create second issue with privious updated name
-    Delete first issue
+Update name of issue
+	Navigate to Issues Page	IssuesUrl
+	Select Issue			Title
+	Select Edit
+	Input Title				UpdatedTitle
+	Click Save Changes
+	Issue Page should contain message "Issue updated"
+
+
+Create second issue with previous updated name
+	Navigate to Add Issue 	AddIssueUrl
+	Input Title				Title
+	Input Type				Type
+	Input Description of Issue
+	Input Due Date			DueDate
+	Click Create Issue
+	Issue Page should contain message "Issue created"
+
+Delete first issue
+	Navigate to Issues Page IssuesUrl
+	Select Issue			Title
+	Select three dots beside Edit button
+	Choose Delete Issue
+	Confirm to delete py choosing Delete Issue
+	Issue Page should contain message "The issue was successfully deleted"
+
+
