@@ -1,0 +1,91 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation	User Registration Test scenario with verification, valid and invalid credentials.
+
+
+
+Pre Condition	Open browser
+Post Condition	Close browser
+Tags Register, TS-1-Register
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+LoginUrl = https://gitlab.com/users/sign_up
+Firstname = Nii
+Lastname = Jar
+Username = NiiJar
+Email = niijar@laurea.fi
+Password = ********
+Username2 = NiiJar2
+Invalid_email = niijar@laurea
+Empty = 
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test 
+
+Register user with valid information
+	Navigate to login page 	LoginUrl
+	Input Firstname 		Firstname
+	Input Lastname 			Lastname
+	Input Username 			Username
+	Input Email 			Email
+	Input Password			Password
+	Complete recaptcha task
+	Submit registeration form
+	Verify registeration
+	Verify page should contain message "Registeration Successed"
+
+
+
+# Negative Test 
+
+Register user with already taken username
+	Navigate to login page 	LoginUrl
+	Input Firstname 		Firstname
+	Input Lastname 			Lastname
+	Input Username 			Username
+	Verify page should contain message "Username is already taken"
+
+
+Register user with empty password
+	Navigate to login page 	LoginUrl
+	Input Firstname 		Firstname
+	Input Lastname 			Lastname
+	Input Username			Username2
+	Input Email				Email
+	Input Password			Empty
+	Submit Registeration Form
+	Verify page should contain message "Password is invalid"
+
+		
+		
+Register user with invalid email
+	Navigate to login page 	LoginUrl
+	Input Firstname 		Firstname
+	Input Lastname 			Lastname
+	Input Username			Username2
+	Input Email				Invalid_email
+	Input Password			Password
+	Submit Registeration Form
+	Verify Page should contain message "Email address is invalid"
+		
+		
+Register user without completing recaptcha
+	Navigate to login page 	LoginUrl
+	Input Firstname 		Firstname
+	Input Lastname 			Lastname
+	Input Username 			Username2
+	Input Email 			Email
+	Input Password			Password
+	Submit Registeration Form
+	Verify Page should contain message "Complete reCAPTCHA before registeration"
+
