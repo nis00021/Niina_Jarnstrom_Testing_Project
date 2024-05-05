@@ -3,23 +3,23 @@
 
 *** Settings ***
 
-# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+Documentation	Project Testing CRUD operations
 
-Documentation	
 
-# TODO: Write Precondition, Postcondition, Tags
-
-Pre Condition	 
-Post Condition	
-Tags
+Pre Condition	Open browser, Sign In to Gitlab
+Post Condition	Sign Out of Gitlab, Close browser
+Tags Project, TS-1-Project
 
 #******************* Common Variables ********************
 
 *** Variables ***
-
-# NOTE: Please Remove your login credential before uploading Assignments
-
-# TODO: Write Project creation field variables
+NewProjectUrl = https://gitlab.com/projects/new
+ProjectName = testproject1
+ProjectTemplate = Ruby on Rails
+TemplateProjectName = testtemplate1
+ProjectUrl = https://gitlab.com/${projectname}
+VisibilityLevel = Private
+NewProjectName = testtemplate2
 
 
 
@@ -27,18 +27,62 @@ Tags
 
 *** Test Case ***
 
-# TODO: Write Positive and Negative Test Cases and Test Process steps
 
-# Positive Test examples are below write test process steps for each below test case
+# Positive Test 
 
-	Create blank project
-	Create template project 
-	Update name of template project
-	Delete template project
-	Valide that message is showing Project 'First project ' was successfully created.
+Create blank project
+	Click button "New Project"
+	Click "Create blank project"
+	Input ProjectName 		ProjectName
+	Input ProjectURL 		ProjectUrl
+	Input VisibilityLevel 	Private
+	Click "Create Project"
+	Verify Page should contain message "Project was successfully created"
 
-# Negative Test examples are below write test process steps for each below test case
+Create template project 
+	Click button "New Project"
+	Click "Create from template"
+	Select template			Template
+	Click Use Template
+	Input ProjectName 		TemplateProjectName
+	Input ProjectURL 		ProjectUrl
+	Input VisibilityLevel 	Private
+	Click "Create Project"
+	Verify Page should contain message "Project was successfully created"
 
-	Create a blank project with the previous same name
+Update name of template project
+	Click testi/testtemplate1
+	Click Settings on left toolbar
+	Click General
+	Input NewProjectName			NewProjectName
+	Click Save Changes
+	Verify Page should contain message "Name succesfully updated"
+
+Delete template project
+	Choose testi/testtemplate1
+	Click Settings on left toolbar
+	Click General
+	Click Expand on Advanced on bottom
+	Click Delete project on bottom
+	Input testi/testtemplate1
+	Click Yes, Delete project
+	Verify Page should contain message "Project will be permanently deleted in 7 days"
+	
+
+
+# Negative Test 
+
+Create a blank project with the previous same name
+	Click button "New Project"
+	Click "Create blank project"
+	Input ProjectName 		ProjectName
+	Input ProjectURL 		ProjectUrl
+	Input VisibilityLevel 	Private
+	Click "Create Project"
+	Verify Page should contain message 
+		"Project namespace name has already been taken. 
+		Name has already been taken. 
+		Path has already been taken"
+
 
 
