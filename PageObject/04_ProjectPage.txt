@@ -37,7 +37,7 @@ Create blank project
 	Input ProjectURL 		ProjectUrl
 	Input VisibilityLevel 	Private
 	Click "Create Project"
-	Verify Page should contain message "Project was successfully created"
+	Project Page should contain message "Project was successfully created"
 
 Create template project 
 	Click button "New Project"
@@ -48,7 +48,7 @@ Create template project
 	Input ProjectURL 		ProjectUrl
 	Input VisibilityLevel 	Private
 	Click "Create Project"
-	Verify Page should contain message "Project was successfully created"
+	Project Page should contain message "Project was successfully created"
 
 Update name of template project
 	Click testi/testtemplate1
@@ -56,7 +56,7 @@ Update name of template project
 	Click General
 	Input NewProjectName			NewProjectName
 	Click Save Changes
-	Verify Page should contain message "Name succesfully updated"
+	Project Page should contain message "Name succesfully updated"
 
 Delete template project
 	Choose testi/testtemplate1
@@ -66,7 +66,7 @@ Delete template project
 	Click Delete project on bottom
 	Input testi/testtemplate1
 	Click Yes, Delete project
-	Verify Page should contain message "Project will be permanently deleted in 7 days"
+	Project Page should contain message "Project will be permanently deleted in 7 days"
 	
 
 
