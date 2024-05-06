@@ -21,7 +21,8 @@
 
 
 ## 6. Did you find any trouble using Github? have you used Github before? where?
-- I have used Github in previous courses. I had to google how to share private repository, I had made only public ones before.
+- I have used Github in previous courses. 
+- At some point I saw in the instructions that I should keep the repository private and give collaborator rights to teacher. I had to google how to share private repository, I had made only public ones before. Now, I don't find it and I don't remember teachers username so I had to make repository public.
  
 
 
