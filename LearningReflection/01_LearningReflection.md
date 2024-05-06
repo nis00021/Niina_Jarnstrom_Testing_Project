@@ -1,7 +1,4 @@
 
-# TODO
-
-> Please use the below questions as guidelines to help you think and plan your Learning Reflection Report
 
 ## 1. How was your experience testing the given Webapp?
 - I enjoyed this task because I learn better when I do stuff, not so much with just watching videos.
